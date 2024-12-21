@@ -1,1 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Keyword Extraction</title>
+</head>
+<body>
+    <h1>Upload Your Resume (PDF)</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".pdf" required>
+        <button type="submit">Upload Resume</button>
+    </form>
 
+    <br><br>
+    <!-- LinkedIn Button (redirects to /linkdin route) -->
+    <form action="/linkdin" method="get">
+        <button type="submit">Go to LinkedIn Job Search</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>LinkedIn Job Listings</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            margin-top: 80px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .job {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+            .job h3 {
+                margin-top: 0;
+                color: #333;
+            }
+
+            .job p {
+                margin: 5px 0;
+                color: #555;
+            }
+
+            .job .company-name {
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            .job .location {
+                font-style: italic;
+                color: #888;
+            }
+
+            .job .url {
+                color: #007BFF;
+            }
+
+            .job .benefits {
+                margin-top: 10px;
+                background-color: #f7f7f7;
+                padding: 10px;
+                border-radius: 5px;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LinkedIn Job Listings</h1>
+        <p>Total Jobs Found: {{ jobs['total'] }}</p>
+    </header>
+    <div class="container">
+        {% if jobs['data'] %}
+        {% for job in jobs['data'] %}
+        <div class="job">
+            <h3>{{ job['title'] }}</h3>
+            <p><span class="company-name">Company:</span> {{ job['company']['name'] }}</p>
+            <p><span class="location">Location:</span> {{ job['location'] }}</p>
+            <p>
+                <strong>Job URL:</strong>
+                {% if job['company'].get('url') %}
+                <a href="{{ job['company']['url'] }}" target="_blank" class="url">View Job</a>
+                {% else %}
+                N/A
+                {% endif %}
+            </p>
+            <div class="benefits">
+                {% if job.get('benefits') %}
+                <strong>Benefits:</strong> {{ job['benefits'] }}
+                {% else %}
+                <p>No benefits information available.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No jobs found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

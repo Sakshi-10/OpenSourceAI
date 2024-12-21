@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extracted Keywords</title>
+</head>
+<body>
+    <h1>Extracted Keywords from Your Resume</h1>
+
+    <!-- Display the extracted details -->
+    <h3>Extracted Information:</h3>
+    <p><strong>Name:</strong> {{ keywords['name'] }}</p>
+    <p><strong>Location:</strong> {{ keywords['location'] }}</p>
+    <p><strong>Skills:</strong> {{ keywords['skills'] }}</p>
+    <p><strong>Experience:</strong> {{ keywords['experience'] }}</p>
+    <p><strong>Education:</strong> {{ keywords['education'] }}</p>
+    <p><strong>Projects:</strong> {{ keywords['projects'] }}</p>
+
+    <!-- Fill the form with extracted information -->
+    <h2>Fill the form with extracted information:</h2>
+    <form action="/submit" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ keywords['name'] }}" required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" value="{{ keywords['location'] }}" required><br><br>
+
+        <label for="skills">Skills:</label><br>
+        <input type="text" id="skills" name="skills" value="{{ keywords['skills'] }}" required><br><br>
+
+        <label for="experience">Experience:</label><br>
+        <input type="text" id="experience" name="experience" value="{{ keywords['experience'] }}"><br><br>
+
+        <label for="education">Education:</label><br>
+        <input type="text" id="education" name="education" value="{{ keywords['education'] }}"><br><br>
+
+        <label for="projects">Projects:</label><br>
+        <input type="text" id="projects" name="projects" value="{{ keywords['projects'] }}"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
