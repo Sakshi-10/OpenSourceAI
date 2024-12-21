@@ -1,1 +1,199 @@
+/* Header Styles */
+:root {
+  --primary-color: #303134;
+  --secondary-color: #8ab4f8;
+  --tertiary-color: #FF416C;
+  --card-text-color: yellow;
+  --text-color: #eaeaea;
+  --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+  --dark-bg-color: rgba(24, 24, 24, 1);
+  --card-bg-color: #303134;
+  --autofill-bg: #3c4043;
+  --input-bg-color: #333;
+  --border-color: #555555;
+  --slider-bg-color: #181818; /* Dark slider background */
+  --secondary-color-rgb: 138, 180, 248;
+  --transition-default: 0.3s ease;
+  --chat-user: #9c9c9c;
+  --suggestion-hover: #9c9c9c;
+}
 
+body.light-mode {
+  --primary-color: #ffffff;
+  --secondary-color: #1a73e8;
+  --tertiary-color: #d93025;
+  --card-text-color: black;
+  --text-color: #202124;
+  --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+  --dark-bg-color: rgba(248, 249, 250, 1);
+  --card-bg-color: #ffffff;
+  --autofill-bg: #DBE2EF;
+  --input-bg-color: #f1f3f4;
+  --border-color: #dadce0;
+  --slider-bg-color: #f8f9fa; /* Light slider background */
+  --secondary-color-rgb: 26, 115, 232;
+  --chat-user: #3F72AF;
+  --suggestion-hover: #8EACCD
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-color: transparent; /* Retain transparent background */
+  position: fixed; /* Fix the header to the top */
+  top: 0; /* Align it to the top of the viewport */
+  left: 0; /* Ensure it starts from the left edge */
+  right: 0; /* Ensure it spans the entire width of the viewport */
+  z-index: 1000; /* Keep it above other elements */
+}
+
+body {
+  margin-top: 80px; /* Adjust for header height (40px height + 20px padding) to prevent overlap */
+}
+
+/* Add a background color to the header when scrolling */
+header.scrolled {
+  background-color: var(--dark-bg-color); /* Semi-transparent dark background */
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.savvy {
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.ai {
+  font-weight: bold;
+  font-family: "Monaco", "Courier New", monospace;
+  color: var(--tertiary-color);
+}
+
+/* Mode Toggle Button */
+button.mode-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color var(--transition-default);
+}
+
+button.mode-toggle:hover {
+  background-color: rgba(var(--secondary-color-rgb), 0.1);
+}
+
+.light-mode-emoji,
+.dark-mode-emoji {
+  position: absolute;
+  transition: opacity var(--transition-default), transform var(--transition-default);
+}
+
+body:not(.light-mode) .light-mode-emoji,
+body.light-mode .dark-mode-emoji {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.light-mode .light-mode-emoji,
+body:not(.light-mode) .dark-mode-emoji {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.user-logo {
+  background-color: var(--tertiary-color);
+  color: var(--bg-color);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-default);
+}
+
+/* Profile Styles */
+.profile-container {
+  position: relative;
+  display: block;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--tertiary-color);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.profile-modal {
+  color: var(--text-color);
+  background: var(--bg-color);
+  width: 200px;
+  height: 120px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  text-align: center;
+  top: 55px;
+  right: 30px;
+  z-index: 1000;
+  display: none;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background-color: var(--tertiary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color var(--transition-default);
+}
+
+/* Create the gradient border */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+}
+
+/* Animation keyframes */
+@keyframes gradientSlide {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
